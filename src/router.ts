@@ -109,7 +109,8 @@ export function engine(config?: EngineOptions): Renderer {
     }
 }
 
-export function overrideRouter(router: Express, options: EngineOptions): Express {
+export function prepareViews(router: Express, options: EngineOptions): Express {
+    options.extname = ".hbs";
     return router
         .set('views', options.viewsDir)
         .use(express.static(options.publicDir))
