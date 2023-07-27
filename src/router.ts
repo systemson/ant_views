@@ -91,8 +91,6 @@ export function engine(config?: EngineOptions): Renderer {
         options: any,
         callback: (e: any, rendered?: string) => void
     ) => {
-        console.log("layout", layouts);
-
         Handlebars.registerPartial("body", Handlebars.compile(fs.readFileSync(view).toString(), options));
 
         fs.readFile(layouts[options.layout] ?? layouts[config?.defaultLayout as string], (error, file) => {
