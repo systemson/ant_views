@@ -44,6 +44,8 @@ export type Renderer = (path: string, options: object, callback: (e: any, render
 
 export type EngineOptions = {
     extname?: string;
+    viewsDir: string;
+    publicDir: string;
     layoutsDir?: string;
     defaultLayout?: string;
     partialsDir?: string;
@@ -109,9 +111,9 @@ export function engine(config?: EngineOptions): Renderer {
 
 export function overrideRouter(router: Express, options: EngineOptions): Express {
     return router
-        .use(express.static(path.join(__dirname, '../../public')))
+        .set('views', options.viewsDir)
+        .use(express.static(options.publicDir))
         .set('view engine', 'hbs')
-        .set('views', path.join(__dirname, '../views'))
         .engine("hbs", engine(options))
     ;
 }
