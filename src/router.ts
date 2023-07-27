@@ -107,7 +107,7 @@ export function engine(config?: EngineOptions): Renderer {
     }
 }
 
-export function overrrideRouter(router: Express, options: EngineOptions): Express {
+export function overrideRouter(router: Express, options: EngineOptions): Express {
     return router
         .use(express.static(path.join(__dirname, '../../public')))
         .set('view engine', 'hbs')
